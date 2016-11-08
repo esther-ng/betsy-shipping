@@ -32,6 +32,7 @@ gem 'omniauth-github'
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-byebug'
+  gem 'minitest-reporters'
 end
 
 group :development do
@@ -46,4 +47,5 @@ end
 
 group :test do
   gem 'simplecov', :require => false
+
 end
