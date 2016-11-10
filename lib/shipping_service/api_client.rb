@@ -7,12 +7,27 @@ module ShippingService::APIClient
     {id: 4, name: "FedEx 2 Day", cost: 68.46},
   ]
 
+  BASE_URL = "https://stark-bayou-23622.herokuapp.com/quotes"
+
+
   def methods_for_order(order)
     # The real implementation should use the order's
     # shipping details, calculate the weight of every
     # product in the order, and send that info to the API
     # along with a pre-defined "source" address.
     #
+    package_details = {
+      "weight" => order.total_weight,
+      "destination" => {
+        "country" => "US",
+        "state" => order.state,
+        "city" => order.city,
+        "zip" => order.billing_zip
+      }
+    }
+
+    data = HTTParty.post(url: BASE_URL, body: package_details, headers: {"Content-Type": application/json'})
+
     # Instead we'll just return the fake data from above
     FAKE_METHOD_DATA.map do |data|
       method_from_data(data)
